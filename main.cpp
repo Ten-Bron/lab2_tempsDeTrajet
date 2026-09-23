@@ -6,8 +6,8 @@
 using namespace std;
 /* ---------------------------
 Laboratoire : 02
-Auteur(s) : 
-Date : 
+Auteur(s) : Bron Tenakor
+Date : 23/09/2026
 But : Calcul du temps de trajet 
 Remarque(s) : 
 --------------------------- */
