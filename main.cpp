@@ -11,6 +11,8 @@ Date : 23/09/2026
 But : Calcul du temps de trajet 
 Remarque(s) : 
 --------------------------- */
+/*
+//////////////// EXERCICE DE BASE ////////////////
 int main() {
     const double s1 = 5; //km/h
     const double s2 = 2; //km/h
@@ -25,12 +27,49 @@ int main() {
     L2 = sqrt(pow(dx,2)+ pow(d,2));
     // calculating the time along L1
     const double t1 = L1/s1;
-    // ccalculating the time along L2
+    // calculating the time along L2
     const double t2 = L2/s2;
     // sum of every delays
     const double temps_total = t1 + t2;
 
-    cout << "Temps de trajet total:" << temps_total << endl;
+    cout << "Temps de trajet total: " << temps_total << endl;
 
+    return EXIT_SUCCESS;
+}
+*/
+///////////////// EXERCICE BONUS ////////////////
+int main() {
+    const double s1 = 5; //km/h
+    const double s2 = 2; //km/h
+    const double dx = 3; //km
+    const double dy = 10; //km
+    const double dy_metres = dy*1000;
+    double optimised_L1 = 0; //km
+    double L2 = 0; //km
+
+    double smallest_time = 999;
+    double precision_iteration = 0.01;
+
+    for (double i = 0.; i < dy; i+=precision_iteration) {
+        // calculating the second triangle's edge
+        const double d = dy - i;
+        // calcul de L2: pythagoras, L2 being the hypo
+        L2 = sqrt(pow(dx,2)+ pow(d,2));
+        // calculating the time along L1
+        const double t1 = i/s1;
+        // calculating the time along L2
+        const double t2 = L2/s2;
+        // sum of every delays
+        const double temps_total = t1 + t2;
+
+        if (temps_total < smallest_time) {
+            smallest_time = temps_total;
+            optimised_L1 = i;
+            cout << "new best time: " << temps_total << " for L1 = : " << i << endl;
+        }
+    }
+    cout << "---------------" << endl;
+    cout << "Temps de trajet total: " << smallest_time << endl;
+    cout << "for L1 = : " << optimised_L1 << endl;
     return EXIT_SUCCESS;
 }
